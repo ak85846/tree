@@ -13,23 +13,17 @@ class Solution {
     // the intersection of two arrays.
     int NumberofElementsInIntersection(int a[], int b[], int n, int m) {
         // Your code goes here
-        unordered_map <int,int> map;
-        int count=0;
-        for(int i=0;i<n;i++){
-            map[a[i]]++;
-        }
-        for(int i=0;i<m;i++){
-            if(map.find(b[i])!=map.end()){
-                if(map[b[i]]==-1)
-                continue;
-                else{
-                    map[b[i]]=-1;
-                    count++;
-                }
-            }
-            
-        }
-        return count;
+       unordered_set<int> st;
+       for(int i =0; i < n; i++)
+       st.insert(a[i]);
+       int count = 0;
+       for(int i =0; i < m; i++){
+           if(st.find(b[i])!=st.end()){
+               count++;
+               st.erase(b[i]);
+           }
+       }
+       return count;
     }
 };
 
